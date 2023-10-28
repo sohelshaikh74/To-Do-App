@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+  <title>Home - ToDo App</title>
+
+</head>
+
+<body class="container">
+  <h1>ToDo App</h1>
+  <input type="text" name="" id="value">
+
+  <button onclick="addToList()" class="btn btn-primary">Add</button>
+  <hr>
+  <ul class="list-group" id="list-group">
+  </ul>
+</body>
+<script>
+
+  todolist = ["Pay Electricity Bill", "Recharge Mobile", "doodh lekar ana hai"]
+
+  function arrayToList() {
+    output = ""
+    for (let i = 0; i < todolist.length; i++) {
+
+      output = output + `<li class="list-group-item"><span onclick="doneTask(this)" style="cursor: pointer">${todolist[i]}</span> 
+        <button onclick="removeTask('${todolist[i]}')" class='btn btn-danger'>x</button> </li>`
+    }
+    document.getElementById('list-group').innerHTML = output
+  }
+
+  function doneTask(spanelement) {
+    var task = spanelement.innerHTML
+    // alert(task)
+    spanelement.innerHTML = task.strike()
+  }
+  function removeTask(task) {
+
+    const index = todolist.indexOf(task);
+    if (index > -1) {
+      todolist.splice(index, 1)
+    }
+    arrayToList()
+  }
+  arrayToList()
+
+  function addToList() {
+    task = document.getElementById('value').value;
+    // alert(task)
+
+    todolist.push(task)
+    arrayToList()
+  }
+</script>
+
+</html>
+<!-- in the todo we should know  -->
